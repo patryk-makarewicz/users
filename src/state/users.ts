@@ -1,23 +1,23 @@
 import { getUsersList } from '@api/Users/Users.api';
+import { UsersListModel } from '@api/Users/Users.model';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { UsersListDTO } from '../api/Users/Users.dto';
 
 type initialStateModel = {
-  users: UsersListDTO;
+  users: UsersListModel;
   status: string;
   error: string | undefined;
 };
 
 const initialState: initialStateModel = {
-  users: [] as unknown as UsersListDTO,
+  users: [] as unknown as UsersListModel,
   status: 'idle',
   error: undefined
 };
 
-export const UsersList = createAsyncThunk('users/getUsersList', async () => {
+export const fetchUsersList = createAsyncThunk('users/getUsersList', async () => {
   const response = await getUsersList();
 
-  return response;
+  return response.records;
 });
 
 const usersSlice = createSlice({
@@ -25,14 +25,14 @@ const usersSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(UsersList.pending, (state) => {
+    builder.addCase(fetchUsersList.pending, (state) => {
       state.status = 'loading';
     });
-    builder.addCase(UsersList.fulfilled, (state, action) => {
+    builder.addCase(fetchUsersList.fulfilled, (state, action) => {
       state.status = 'succeeded';
       state.users = action.payload;
     });
-    builder.addCase(UsersList.rejected, (state, action) => {
+    builder.addCase(fetchUsersList.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.message;
     });
