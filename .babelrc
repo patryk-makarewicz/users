@@ -1,0 +1,24 @@
+{
+    "presets": [
+        "next/babel"
+    ],
+    "plugins": [
+        "inline-react-svg",
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "./"
+                ],
+                "alias": {
+                    "@components": "./src/components",
+                    "@api": "./src/api",
+                    "@hooks": "./src/hooks",
+                    "@services": "./src/services",
+                    "@typeDefs": "./src/types",
+                    "@public": "./public"
+                }
+            }
+        ]
+    ]
+}
