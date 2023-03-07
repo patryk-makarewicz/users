@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import GlobalStyles from 'src/styles/GlobalStyles';
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children?: React.ReactNode }) => {
   return (
     <>
       <Head>
