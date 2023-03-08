@@ -1,4 +1,4 @@
-export type UsersListDTO = {
+export type UsersList = {
   records: {
     id: string;
     createdTime: string;
@@ -14,4 +14,15 @@ export type UsersListDTO = {
 
 export type UserId = {
   id: string;
+};
+
+export type CreateUser = {
+  records: {
+    fields: {
+      fullName: string;
+      userName: string;
+      email: string;
+      city: string;
+    };
+  }[];
 };
