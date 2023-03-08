@@ -2,5 +2,9 @@
   "navigation": {
     "home": "Home",
     "add": "Add User"
+  },
+
+  "users": {
+    "title": "Users list"
   }
 }
