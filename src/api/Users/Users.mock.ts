@@ -1,5 +1,5 @@
 import { request } from '../request';
-import { UsersListDTO } from './Users.dto';
+import { UsersListDTO } from './users.dto';
 
 export const mockUsersList: UsersListDTO = {
   records: [
