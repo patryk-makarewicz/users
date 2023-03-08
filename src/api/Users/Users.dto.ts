@@ -11,3 +11,7 @@ export type UsersListDTO = {
     };
   }[];
 };
+
+export type UserId = {
+  id: string;
+};
