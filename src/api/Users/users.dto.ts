@@ -26,3 +26,15 @@ export type CreateUser = {
     };
   }[];
 };
+
+export type UpdateUser = {
+  records: {
+    id: string;
+    fields: {
+      fullName: string;
+      userName: string;
+      email: string;
+      city: string;
+    };
+  }[];
+};
