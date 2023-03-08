@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { BASE_URL, headers, useAPImocks } from '../config';
-import { CreateUser, UserId, UsersList } from './users.dto';
+import { CreateUser, UpdateUser, UserId, UsersList } from './users.dto';
 import { getUsersListMock } from './users.mock';
 
 export const getUsersList = () =>
@@ -21,6 +21,9 @@ export const deleteUser = (userId: string) =>
 export const createUser = (data: CreateUser) =>
   useAPImocks
     ? null
-    : axios
-        .post<CreateUser>(`${BASE_URL}/users`, { records: data.records }, { headers })
-        .then(({ data }) => data);
+    : axios.post<CreateUser>(`${BASE_URL}/users`, data, { headers }).then(({ data }) => data);
+
+export const updateUser = (data: UpdateUser) =>
+  useAPImocks
+    ? null
+    : axios.put<UpdateUser>(`${BASE_URL}/users`, data, { headers }).then(({ data }) => data);
