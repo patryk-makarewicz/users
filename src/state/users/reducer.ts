@@ -5,25 +5,25 @@ import { getUsersListRequest } from './actions';
 
 type UserListRequestModel = {
   data: UsersListModel;
-  loading: string;
+  status: string;
 };
 
 const initialState: UserListRequestModel = {
   data: [] as unknown as UsersListModel,
-  loading: 'idle' || 'pending' || 'succeeded' || 'failed'
+  status: 'idle' || 'pending' || 'succeeded' || 'failed'
 };
 
 export const usersListReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getUsersListRequest.pending, (state) => {
-      state.loading = 'pending';
+      state.status = 'pending';
     })
     .addCase(getUsersListRequest.fulfilled, (state, { payload }) => {
-      state.loading = 'succeeded';
+      state.status = 'succeeded';
       state.data = payload;
     })
     .addCase(getUsersListRequest.rejected, (state) => {
-      state.loading = 'failed';
+      state.status = 'failed';
     });
 });
 

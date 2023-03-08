@@ -7,7 +7,7 @@ const Home = () => {
   const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
-  const { data, loading: usersListStatus } = useAppSelector((state) => state.usersList);
+  const { data, status: usersListStatus } = useAppSelector((state) => state.usersList);
 
   console.log(data);
 
