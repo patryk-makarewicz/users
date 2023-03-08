@@ -1,7 +1,7 @@
 import { request } from '../request';
-import { UsersListDTO } from './users.dto';
+import { UsersList } from './users.dto';
 
-export const mockUsersList: UsersListDTO = {
+export const mockUsersList: UsersList = {
   records: [
     {
       id: 'recounj9W7jBcqS0c',
@@ -29,5 +29,5 @@ export const mockUsersList: UsersListDTO = {
 };
 
 export const getUsersListMock = () => {
-  return request<UsersListDTO>(mockUsersList);
+  return request<UsersList>(mockUsersList);
 };
