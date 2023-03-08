@@ -1,29 +1,42 @@
 import { UsersListModel } from '@api/users/users.model';
 
 import { createReducer } from '@reduxjs/toolkit';
-import { getUsersListRequest } from './actions';
+import { deleteUserRequest, getUsersListRequest } from './actions';
 
-type UserListRequestModel = {
+type StatusType = 'idle' | 'pending' | 'succeeded' | 'failed';
+
+type UserListModel = {
   data: UsersListModel;
-  status: string;
+  statusGetUsersList: StatusType;
+  statusDeleteUser: StatusType;
 };
 
-const initialState: UserListRequestModel = {
+const initialState: UserListModel = {
   data: [] as unknown as UsersListModel,
-  status: 'idle' || 'pending' || 'succeeded' || 'failed'
+  statusGetUsersList: 'idle',
+  statusDeleteUser: 'idle'
 };
 
 export const usersListReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(getUsersListRequest.pending, (state) => {
-      state.status = 'pending';
+      state.statusGetUsersList = 'pending';
     })
     .addCase(getUsersListRequest.fulfilled, (state, { payload }) => {
-      state.status = 'succeeded';
+      state.statusGetUsersList = 'succeeded';
       state.data = payload;
     })
     .addCase(getUsersListRequest.rejected, (state) => {
-      state.status = 'failed';
+      state.statusGetUsersList = 'failed';
+    })
+    .addCase(deleteUserRequest.pending, (state) => {
+      state.statusDeleteUser = 'pending';
+    })
+    .addCase(deleteUserRequest.fulfilled, (state) => {
+      state.statusDeleteUser = 'succeeded';
+    })
+    .addCase(deleteUserRequest.rejected, (state) => {
+      state.statusDeleteUser = 'failed';
     });
 });
 
