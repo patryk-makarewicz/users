@@ -9,8 +9,6 @@ const Home = () => {
   const dispatch = useAppDispatch();
   const { data, status: usersListStatus } = useAppSelector((state) => state.usersList);
 
-  console.log(data);
-
   return (
     <main>
       {t('users.title')}
@@ -19,6 +17,16 @@ const Home = () => {
       <h4>{usersListStatus === 'succeeded' && 'Success'}</h4>
 
       <button onClick={() => dispatch(getUsersListRequest())}>Refetch data</button>
+      <button>Add</button>
+
+      <div>
+        {data.map((user) => (
+          <div key={user.id}>
+            {user.fields.fullName} <button>Edit</button>
+            <button>Delete</button>
+          </div>
+        ))}
+      </div>
     </main>
   );
 };
