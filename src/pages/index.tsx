@@ -1,28 +1,38 @@
 import { useTranslation } from 'react-i18next';
-import { getUsersList } from '@api/Users/Users.api';
-import { useSelector } from 'react-redux';
-import { RootState, store } from 'src/state/store';
-import { useEffect } from 'react';
-import { fetchUsersList } from 'src/state/users';
+import { useAppDispatch, useAppSelector } from 'src/state/hooks';
+import { wrapper } from 'src/state/store';
+import { getUsersListRequest } from 'src/state/users/actions';
 
-const Home = ({ data }: any) => {
+const Home = () => {
   const { t } = useTranslation();
 
-  const UsersList = useSelector((state: RootState) => state.usersList);
-  const statusUsersList = useSelector((state: RootState) => state.usersList.status);
+  const dispatch = useAppDispatch();
+  const { data, status: usersListStatus } = useAppSelector((state) => state.usersList);
 
-  useEffect(() => {
-    store.dispatch(fetchUsersList());
-  }, []);
+  return (
+    <main>
+      {t('users.title')}
+      <h4>{usersListStatus === 'pending' && 'Loading...'}</h4>
+      <h4>{usersListStatus === 'failed' && 'Error'}</h4>
+      <h4>{usersListStatus === 'succeeded' && 'Success'}</h4>
 
-  return <main>{t('navigation.home')}</main>;
+      <button onClick={() => dispatch(getUsersListRequest())}>Refetch data</button>
+      <button>Add</button>
+
+      <div>
+        {data.map((user) => (
+          <div key={user.id}>
+            {user.fields.fullName} <button>Edit</button>
+            <button>Delete</button>
+          </div>
+        ))}
+      </div>
+    </main>
+  );
 };
 
-// export async function getServerSideProps() {
-//   const response = await getUsersList();
-//   const data = await response;
-
-//   return { props: { data } };
-// }
+Home.getInitialProps = wrapper.getInitialPageProps(({ dispatch }) => async () => {
+  await dispatch(getUsersListRequest());
+});
 
 export default Home;
