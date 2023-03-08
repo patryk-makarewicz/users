@@ -1,7 +1,12 @@
 import { UsersListModel } from '@api/users/users.model';
 
 import { createReducer } from '@reduxjs/toolkit';
-import { createUserRequest, deleteUserRequest, getUsersListRequest } from './actions';
+import {
+  createUserRequest,
+  deleteUserRequest,
+  getUsersListRequest,
+  updateUserRequest
+} from './actions';
 
 type StatusType = 'idle' | 'pending' | 'succeeded' | 'failed';
 
@@ -10,13 +15,15 @@ type UserListModel = {
   statusGetUsersList: StatusType;
   statusDeleteUser: StatusType;
   statusCreateUser: StatusType;
+  statusUpdateUser: StatusType;
 };
 
 const initialState: UserListModel = {
   data: [] as unknown as UsersListModel,
   statusGetUsersList: 'idle',
   statusDeleteUser: 'idle',
-  statusCreateUser: 'idle'
+  statusCreateUser: 'idle',
+  statusUpdateUser: 'idle'
 };
 
 export const usersListReducer = createReducer(initialState, (builder) => {
@@ -48,6 +55,15 @@ export const usersListReducer = createReducer(initialState, (builder) => {
     })
     .addCase(createUserRequest.rejected, (state) => {
       state.statusCreateUser = 'failed';
+    })
+    .addCase(updateUserRequest.pending, (state) => {
+      state.statusUpdateUser = 'pending';
+    })
+    .addCase(updateUserRequest.fulfilled, (state) => {
+      state.statusUpdateUser = 'succeeded';
+    })
+    .addCase(updateUserRequest.rejected, (state) => {
+      state.statusUpdateUser = 'failed';
     });
 });
 
