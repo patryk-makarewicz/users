@@ -1,19 +1,14 @@
 import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useAppDispatch, useAppSelector } from 'src/state/hooks';
-import { wrapper } from 'src/state/store';
-import {
-  getUsersListRequest,
-  deleteUserRequest,
-  createUserRequest,
-  updateUserRequest
-} from 'src/state/users/actions';
-import { EditUserFormModel } from '@api/users/users.model';
 
-export const EditUserForm = () => {
+import { useAppDispatch } from 'src/state/hooks';
+
+import { updateUserRequest } from 'src/state/users/actions';
+import { EditUserFormModel, UserModel } from '@api/users/users.model';
+
+export const EditUserForm = (user: UserModel) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -28,8 +23,15 @@ export const EditUserForm = () => {
   const onSubmit: SubmitHandler<EditUserFormModel> = (data) => {
     dispatch(updateUserRequest({ records: [data] }));
     router.push('/');
-    reset();
   };
+
+  useEffect(() => {
+    setValue('fields.fullName', user.fields.fullName);
+    setValue('fields.userName', user.fields.userName);
+    setValue('fields.email', user.fields.email);
+    setValue('fields.city', user.fields.city);
+    setValue('id', user.id);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
