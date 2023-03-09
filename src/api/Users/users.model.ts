@@ -9,3 +9,22 @@ export type UsersListModel = {
     id: string;
   };
 }[];
+
+export type CreateUserFormModel = {
+  fields: {
+    fullName: string;
+    userName: string;
+    email: string;
+    city: string;
+  };
+};
+
+export type EditUserFormModel = {
+  id: string;
+  fields: {
+    fullName: string;
+    userName: string;
+    email: string;
+    city: string;
+  };
+};
