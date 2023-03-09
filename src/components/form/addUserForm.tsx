@@ -7,8 +7,10 @@ import { CreateUserFormModel } from '@api/users/users.model';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useAppDispatch } from 'src/state/hooks';
 import { createUserRequest } from 'src/state/users/actions';
+import { Button } from '@components/button';
 
 export const AddUserForm = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -43,9 +45,16 @@ export const AddUserForm = () => {
       <input {...register('fields.city', { required: true })} />
       {errors.fields?.city && <span>This field is required</span>}
 
-      <input type="submit" />
-
-      <Link href="/">Cancel</Link>
+      <Button
+        secondary
+        onClick={() => {
+          router.push('/');
+        }}>
+        {t('user.edit')}
+      </Button>
+      <Button type="submit" onClick={() => {}}>
+        {t('user.submit')}
+      </Button>
     </form>
   );
 };

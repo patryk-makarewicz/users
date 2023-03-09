@@ -7,8 +7,11 @@ import { useAppDispatch } from 'src/state/hooks';
 
 import { updateUserRequest } from 'src/state/users/actions';
 import { EditUserFormModel, UserModel } from '@api/users/users.model';
+import { useTranslation } from 'react-i18next';
+import { Button } from '@components/button';
 
 export const EditUserForm = (props: { user: UserModel }) => {
+  const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -48,9 +51,16 @@ export const EditUserForm = (props: { user: UserModel }) => {
 
       <input {...register('id')} hidden />
 
-      <input type="submit" />
-
-      <Link href="/">Cancel</Link>
+      <Button
+        secondary
+        onClick={() => {
+          router.push('/');
+        }}>
+        {t('user.cancel')}
+      </Button>
+      <Button type="submit" onClick={() => {}}>
+        {t('user.submit')}
+      </Button>
     </form>
   );
 };

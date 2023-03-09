@@ -16,22 +16,21 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
   transition: all 0.5s;
   text-transform: uppercase;
+  padding: 4px 16px;
+  font-weight: ${fontWeight.semiBold};
+  font-size: ${fontSize.s};
 
   ${({ secondary }) =>
     secondary
       ? css`
-          background-color: inherit;
-          color: var(--text-color);
-          font-weight: ${fontWeight.regular};
-          font-size: ${fontSize.s};
-          padding: 4px 8px;
+          background-color: ${colors.white};
+          color: ${colors.primary};
+          border: 1px solid ${colors.primary};
         `
       : css`
           background-color: ${colors.primary};
           color: ${colors.white};
-          font-weight: ${fontWeight.semiBold};
-          font-size: ${fontSize.s};
-          padding: 4px 16px;
+          border: 1px solid ${colors.primary};
         `}
 
   ${({ editColor }) =>
