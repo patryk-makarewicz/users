@@ -8,7 +8,7 @@ import { useAppDispatch } from 'src/state/hooks';
 import { updateUserRequest } from 'src/state/users/actions';
 import { EditUserFormModel, UserModel } from '@api/users/users.model';
 
-export const EditUserForm = (user: UserModel) => {
+export const EditUserForm = (props: { user: UserModel }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -16,7 +16,6 @@ export const EditUserForm = (user: UserModel) => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
     setValue
   } = useForm<EditUserFormModel>();
 
@@ -26,11 +25,11 @@ export const EditUserForm = (user: UserModel) => {
   };
 
   useEffect(() => {
-    setValue('fields.fullName', user.fields.fullName);
-    setValue('fields.userName', user.fields.userName);
-    setValue('fields.email', user.fields.email);
-    setValue('fields.city', user.fields.city);
-    setValue('id', user.id);
+    setValue('fields.fullName', props.user.fields.fullName);
+    setValue('fields.userName', props.user.fields.userName);
+    setValue('fields.email', props.user.fields.email);
+    setValue('fields.city', props.user.fields.city);
+    setValue('id', props.user.id);
   }, []);
 
   return (

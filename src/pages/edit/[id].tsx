@@ -1,9 +1,10 @@
+import { UserModel } from '@api/users/users.model';
 import { EditUserForm } from '@components/form';
 import { useRouter } from 'next/router';
 
 const EditPage = () => {
   const router = useRouter();
-  const user = JSON.parse(router.query.data as string);
+  const user: UserModel = JSON.parse(router.query.data as string);
 
   return (
     <div>
