@@ -1,10 +1,10 @@
-import Link from 'next/link';
+import { AddUserForm } from '@components/form';
 
 const AddPage = () => {
   return (
     <div>
-      <Link href="/">Home</Link>
-      <h2>Add Route</h2>
+      <h2>Add User</h2>
+      <AddUserForm />
     </div>
   );
 };
