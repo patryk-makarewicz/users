@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import Link from 'next/link';
+
 import { useRouter } from 'next/router';
 
 import { useAppDispatch, useAppSelector } from 'src/state/hooks';
 import { wrapper } from 'src/state/store';
-import { getUsersListRequest, deleteUserRequest } from 'src/state/users/actions';
+import { getUsersListRequest } from 'src/state/users/actions';
 import { Button } from '@components/button';
+import { User } from '@components/user';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -14,10 +15,6 @@ const Home = () => {
   const dispatch = useAppDispatch();
   const { data, statusGetUsersList, statusDeleteUser, statusCreateUser, statusUpdateUser } =
     useAppSelector((state) => state.usersList);
-
-  const onDeleteUser = (idUser: string) => {
-    dispatch(deleteUserRequest(idUser));
-  };
 
   useEffect(() => {
     if (
@@ -28,8 +25,6 @@ const Home = () => {
       dispatch(getUsersListRequest());
     }
   }, [statusDeleteUser, statusCreateUser, statusUpdateUser]);
-
-  // ----- TODO -----> handle failed status on actions
 
   return (
     <main>
@@ -62,19 +57,7 @@ const Home = () => {
 
       <div>
         {data.map((user) => (
-          <div key={user.id}>
-            {user.fields.fullName}{' '}
-            <button
-              onClick={() => {
-                router.push({
-                  pathname: `/edit/${user.id}`,
-                  query: { data: JSON.stringify(user) }
-                });
-              }}>
-              Edit
-            </button>
-            <button onClick={() => onDeleteUser(user.id)}>Delete</button>
-          </div>
+          <User key={user.id} user={user} />
         ))}
       </div>
     </main>
