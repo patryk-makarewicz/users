@@ -1,6 +1,5 @@
 {
-  "navigation": {
-    "home": "Home",
-    "add": "Dodaj użytkownika"
+  "header": {
+    "info": "In construction - the main functionality of the application works"
   }
 }

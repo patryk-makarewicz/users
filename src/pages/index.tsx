@@ -1,70 +1,22 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import Link from 'next/link';
+
 import { useRouter } from 'next/router';
 
 import { useAppDispatch, useAppSelector } from 'src/state/hooks';
 import { wrapper } from 'src/state/store';
-import {
-  getUsersListRequest,
-  deleteUserRequest,
-  createUserRequest,
-  updateUserRequest
-} from 'src/state/users/actions';
+import { getUsersListRequest } from 'src/state/users/actions';
+import { Button } from '@components/button';
+import { User } from '@components/user';
 
-type Inputs = {
-  id: string;
-  fields: {
-    fullName: string;
-    userName: string;
-    email: string;
-    city: string;
-  };
-};
+import * as Styled from './home.styles';
 
 const Home = () => {
   const { t } = useTranslation();
   const router = useRouter();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    setValue
-  } = useForm<Inputs>();
-  // const onSubmit: SubmitHandler<Inputs> = (data) => {
-  //   dispatch(
-  //     createUserRequest({
-  //       records: [
-  //         {
-  //           fields: {
-  //             city: data.fields.city,
-  //             email: data.fields.email,
-  //             fullName: data.fields.fullName,
-  //             userName: data.fields.userName
-  //           }
-  //         }
-  //       ]
-  //     })
-  //   );
-  //   reset();
-  // };
-
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
-    dispatch(updateUserRequest({ records: [data] }));
-    reset();
-  };
-
   const dispatch = useAppDispatch();
   const { data, statusGetUsersList, statusDeleteUser, statusCreateUser, statusUpdateUser } =
     useAppSelector((state) => state.usersList);
-
-  const onDeleteUser = (idUser: string) => {
-    dispatch(deleteUserRequest(idUser));
-  };
 
   useEffect(() => {
     if (
@@ -76,69 +28,30 @@ const Home = () => {
     }
   }, [statusDeleteUser, statusCreateUser, statusUpdateUser]);
 
-  // ----- TODO -----> handle failed status on actions
-
   return (
-    <main>
-      <div>
-        <ul>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/add">Add User</Link>
-          </li>
-        </ul>
-      </div>
-
-      {t('users.title')}
-      <h4>{statusGetUsersList === 'pending' && 'Loading...'}</h4>
-      <h4>{statusGetUsersList === 'failed' && 'Error'}</h4>
-      <h4>{statusGetUsersList === 'succeeded' && 'Success'}</h4>
-
-      <button onClick={() => dispatch(getUsersListRequest())}>Refetch data</button>
-      {/* <button onClick={() => dispatch(createUserRequest())}>Add</button> */}
+    <Styled.Container>
+      <Styled.Box>
+        {t('user.list')}
+        <Button
+          onClick={() => {
+            router.push('/add');
+          }}>
+          {t('user.add')}
+        </Button>
+      </Styled.Box>
 
       <div>
-        {data.map((user) => (
-          <div key={user.id}>
-            {user.fields.fullName}{' '}
-            <button
-              onClick={() => {
-                router.push(`/edit/${user.id}`);
-                setValue('fields.fullName', user.fields.fullName);
-                setValue('fields.userName', user.fields.userName);
-                setValue('fields.email', user.fields.email);
-                setValue('fields.city', user.fields.city);
-                setValue('id', user.id);
-              }}>
-              Edit
-            </button>
-            <button onClick={() => onDeleteUser(user.id)}>Delete</button>
-          </div>
-        ))}
+        {statusGetUsersList === 'pending' ? 'Loading...' : null}
+        {statusGetUsersList === 'failed' ? 'Error ups... Try again latter' : null}
+        {statusGetUsersList === 'succeeded' ? (
+          <>
+            {data?.map((user) => (
+              <User key={user.id} user={user} />
+            ))}
+          </>
+        ) : null}
       </div>
-
-      <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <input {...register('fields.fullName', { required: true })} />
-          {errors.fields?.fullName && <span>This field is required</span>}
-
-          <input {...register('fields.userName', { required: true })} />
-          {errors.fields?.userName && <span>This field is required</span>}
-
-          <input {...register('fields.email', { required: true })} />
-          {errors.fields?.fullName && <span>This field is required</span>}
-
-          <input {...register('fields.city', { required: true })} />
-          {errors.fields?.city && <span>This field is required</span>}
-
-          <input {...register('id')} />
-
-          <input type="submit" />
-        </form>
-      </div>
-    </main>
+    </Styled.Container>
   );
 };
 

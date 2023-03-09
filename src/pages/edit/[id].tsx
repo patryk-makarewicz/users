@@ -1,14 +1,18 @@
-import Link from 'next/link';
+import { UserModel } from '@api/users/users.model';
+import { EditUserForm } from '@components/form';
 import { useRouter } from 'next/router';
+
+import * as Styled from './edit.styles';
 
 const EditPage = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const user: UserModel = JSON.parse(router.query.data as string);
+
   return (
-    <div>
-      <h2>Edit Route- User ID: {id}</h2>
-      <Link href="/">Home</Link>
-    </div>
+    <Styled.Container>
+      <h2>Edit User</h2>
+      <EditUserForm user={user} />
+    </Styled.Container>
   );
 };
 

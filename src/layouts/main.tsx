@@ -1,5 +1,8 @@
+import { Footer } from '@components/footer';
+import { Header } from '@components/header';
 import Head from 'next/head';
 import GlobalStyles from 'src/styles/GlobalStyles';
+import { PageLayout } from './pageLayout';
 
 const Layout = ({ children }: { children?: React.ReactNode }) => {
   return (
@@ -13,17 +16,20 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
         <meta property="og:url" content="https://" />
         <meta property="og:image" content="https:///cover.png" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+
+      <>
         <GlobalStyles />
-        <header>Header</header>
-        <main>{children}</main>
-        <footer>Footer</footer>
-      </div>
+        <Header />
+        <main>
+          <PageLayout>{children}</PageLayout>
+        </main>
+        <Footer />
+      </>
     </>
   );
 };
