@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { useAppDispatch, useAppSelector } from 'src/state/hooks';
 import { wrapper } from 'src/state/store';
 import { getUsersListRequest, deleteUserRequest } from 'src/state/users/actions';
+import { Button } from '@components/button';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -33,23 +34,31 @@ const Home = () => {
   return (
     <main>
       <div>
-        <ul>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/add">Add User</Link>
-          </li>
-        </ul>
+        <h4>
+          Get Users List Status:{' '}
+          {(() => {
+            if (statusGetUsersList === 'pending') {
+              return 'Loading...';
+            }
+            if (statusGetUsersList === 'failed') {
+              return 'Error';
+            }
+            if (statusGetUsersList === 'succeeded') {
+              return 'Success';
+            }
+            return;
+          })()}
+        </h4>
       </div>
-
-      {t('users.title')}
-      <h4>{statusGetUsersList === 'pending' && 'Loading...'}</h4>
-      <h4>{statusGetUsersList === 'failed' && 'Error'}</h4>
-      <h4>{statusGetUsersList === 'succeeded' && 'Success'}</h4>
-
-      <button onClick={() => dispatch(getUsersListRequest())}>Refetch data</button>
-      {/* <button onClick={() => dispatch(createUserRequest())}>Add</button> */}
+      <div>
+        {t('users.title')}
+        <Button
+          onClick={() => {
+            router.push('/add');
+          }}>
+          Add new
+        </Button>
+      </div>
 
       <div>
         {data.map((user) => (
