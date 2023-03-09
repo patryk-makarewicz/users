@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { useAppDispatch, useAppSelector } from 'src/state/hooks';
 import { wrapper } from 'src/state/store';
@@ -23,6 +25,7 @@ type Inputs = {
 
 const Home = () => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   const {
     register,
@@ -77,6 +80,17 @@ const Home = () => {
 
   return (
     <main>
+      <div>
+        <ul>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/add">Add User</Link>
+          </li>
+        </ul>
+      </div>
+
       {t('users.title')}
       <h4>{statusGetUsersList === 'pending' && 'Loading...'}</h4>
       <h4>{statusGetUsersList === 'failed' && 'Error'}</h4>
@@ -91,6 +105,7 @@ const Home = () => {
             {user.fields.fullName}{' '}
             <button
               onClick={() => {
+                router.push(`/edit/${user.id}`);
                 setValue('fields.fullName', user.fields.fullName);
                 setValue('fields.userName', user.fields.userName);
                 setValue('fields.email', user.fields.email);
