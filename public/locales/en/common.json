@@ -1,10 +1,17 @@
 {
-  "navigation": {
-    "home": "Home",
-    "add": "Add User"
+  "header": {
+    "info": "In construction - the main functionality of the application works"
   },
 
-  "users": {
-    "title": "Users list"
+  "user": {
+    "list": "Users list",
+    "add": "Add new",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+
+  "footer": {
+    "copyright": "Copyright Ⓒ {{year}} makaDev Patryk Makarewicz"
   }
 }

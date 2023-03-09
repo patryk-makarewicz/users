@@ -9,6 +9,8 @@ import { getUsersListRequest } from 'src/state/users/actions';
 import { Button } from '@components/button';
 import { User } from '@components/user';
 
+import * as Styled from './home.styles';
+
 const Home = () => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -27,7 +29,7 @@ const Home = () => {
   }, [statusDeleteUser, statusCreateUser, statusUpdateUser]);
 
   return (
-    <main>
+    <Styled.Container>
       <div>
         {t('users.title')}
         <Button
@@ -55,7 +57,7 @@ const Home = () => {
           );
         })()}
       </div>
-    </main>
+    </Styled.Container>
   );
 };
 

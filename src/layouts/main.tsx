@@ -1,3 +1,4 @@
+import { Footer } from '@components/footer';
 import { Header } from '@components/header';
 import Head from 'next/head';
 import GlobalStyles from 'src/styles/GlobalStyles';
@@ -20,14 +21,15 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+
+      <>
         <GlobalStyles />
         <Header />
         <main>
           <PageLayout>{children}</PageLayout>
         </main>
-        <footer>Footer</footer>
-      </div>
+        <Footer />
+      </>
     </>
   );
 };
