@@ -2,19 +2,14 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
+
 import { useAppDispatch, useAppSelector } from 'src/state/hooks';
 import { wrapper } from 'src/state/store';
 import { getUsersListRequest, deleteUserRequest } from 'src/state/users/actions';
 
-import { EditUserFormModel } from '@api/users/users.model';
-
 const Home = () => {
   const { t } = useTranslation();
   const router = useRouter();
-
-  const { setValue } = useForm<EditUserFormModel>();
-
   const dispatch = useAppDispatch();
   const { data, statusGetUsersList, statusDeleteUser, statusCreateUser, statusUpdateUser } =
     useAppSelector((state) => state.usersList);
@@ -62,12 +57,10 @@ const Home = () => {
             {user.fields.fullName}{' '}
             <button
               onClick={() => {
-                router.push(`/edit/${user.id}`);
-                setValue('fields.fullName', user.fields.fullName);
-                setValue('fields.userName', user.fields.userName);
-                setValue('fields.email', user.fields.email);
-                setValue('fields.city', user.fields.city);
-                setValue('id', user.id);
+                router.push({
+                  pathname: `/edit/${user.id}`,
+                  query: { data: JSON.stringify(user) }
+                });
               }}>
               Edit
             </button>

@@ -1,15 +1,14 @@
 import { EditUserForm } from '@components/form';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const EditPage = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const user = JSON.parse(router.query.data as string);
+
   return (
     <div>
-      <h2>Edit Route- User ID: {id}</h2>
-      <Link href="/">Home</Link>
-      <EditUserForm />
+      <h2>Edit User</h2>
+      <EditUserForm user={user} />
     </div>
   );
 };
