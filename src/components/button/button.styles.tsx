@@ -12,7 +12,6 @@ export const Button = styled.button<ButtonProps>`
   font-family: 'Archivo', sans-serif;
   text-decoration: none;
   border-radius: 4px;
-  border: none;
   cursor: pointer;
   transition: all 0.5s;
   text-transform: uppercase;
@@ -37,12 +36,14 @@ export const Button = styled.button<ButtonProps>`
     editColor &&
     css`
       background-color: ${colors.orange};
+      border: 1px solid ${colors.orange};
     `}
 
      ${({ deleteColor }) =>
     deleteColor &&
     css`
       background-color: ${colors.warning};
+      border: 1px solid ${colors.warning};
     `}
 
   ${({ $loading }) =>

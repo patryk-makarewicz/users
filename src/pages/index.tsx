@@ -41,21 +41,15 @@ const Home = () => {
       </Styled.Box>
 
       <div>
-        {(() => {
-          if (statusGetUsersList === 'pending') {
-            return 'Loading...';
-          }
-          if (statusGetUsersList === 'failed') {
-            return 'Error';
-          }
-          return (
-            <>
-              {data?.map((user) => (
-                <User key={user.id} user={user} />
-              ))}
-            </>
-          );
-        })()}
+        {statusGetUsersList === 'pending' ? 'Loading...' : null}
+        {statusGetUsersList === 'failed' ? 'Error ups... Try again latter' : null}
+        {statusGetUsersList === 'succeeded' ? (
+          <>
+            {data?.map((user) => (
+              <User key={user.id} user={user} />
+            ))}
+          </>
+        ) : null}
       </div>
     </Styled.Container>
   );
