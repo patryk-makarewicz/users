@@ -30,15 +30,15 @@ const Home = () => {
 
   return (
     <Styled.Container>
-      <div>
-        {t('users.title')}
+      <Styled.Box>
+        {t('user.list')}
         <Button
           onClick={() => {
             router.push('/add');
           }}>
-          Add new
+          {t('user.add')}
         </Button>
-      </div>
+      </Styled.Box>
 
       <div>
         {(() => {

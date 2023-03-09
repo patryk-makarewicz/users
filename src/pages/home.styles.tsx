@@ -10,3 +10,9 @@ export const Container = styled.div`
   align-items: center;
   padding: ${padding.l} 0;
 `;
+
+export const Box = styled.div`
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+`;

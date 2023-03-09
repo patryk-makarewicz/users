@@ -1,12 +1,15 @@
-import { UserModel } from '@api/users/users.model';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 import { useAppDispatch } from 'src/state/hooks';
 import { deleteUserRequest } from 'src/state/users/actions';
+import { UserModel } from '@api/users/users.model';
+import { Button } from '@components/button';
 
 import * as Styled from './user.styles';
 
 export const User = (props: { user: UserModel }) => {
+  const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -16,16 +19,19 @@ export const User = (props: { user: UserModel }) => {
       <div>{props.user.fields.userName}</div>
       <div>{props.user.fields.email}</div>
       <div>{props.user.fields.city}</div>
-      <button
+      <Button
+        editColor
         onClick={() => {
           router.push({
             pathname: `/edit/${props.user.id}`,
             query: { data: JSON.stringify(props.user) }
           });
         }}>
-        Edit
-      </button>
-      <button onClick={() => dispatch(deleteUserRequest(props.user.id))}>Delete</button>
+        {t('user.edit')}
+      </Button>
+      <Button deleteColor onClick={() => dispatch(deleteUserRequest(props.user.id))}>
+        {t('user.delete')}
+      </Button>
     </Styled.Wrapper>
   );
 };

@@ -4,15 +4,18 @@ import { colors, fontSize, fontWeight } from '../../styles';
 type ButtonProps = {
   secondary: boolean;
   $loading: boolean;
+  editColor: boolean;
+  deleteColor: boolean;
 };
 
 export const Button = styled.button<ButtonProps>`
   font-family: 'Archivo', sans-serif;
   text-decoration: none;
-  border-radius: 2px;
+  border-radius: 4px;
   border: none;
   cursor: pointer;
   transition: all 0.5s;
+  text-transform: uppercase;
 
   ${({ secondary }) =>
     secondary
@@ -27,9 +30,21 @@ export const Button = styled.button<ButtonProps>`
           background-color: ${colors.primary};
           color: ${colors.white};
           font-weight: ${fontWeight.semiBold};
-          font-size: ${fontSize.m};
-          padding: 8px 16px;
+          font-size: ${fontSize.s};
+          padding: 4px 16px;
         `}
+
+  ${({ editColor }) =>
+    editColor &&
+    css`
+      background-color: ${colors.orange};
+    `}
+
+     ${({ deleteColor }) =>
+    deleteColor &&
+    css`
+      background-color: ${colors.warning};
+    `}
 
   ${({ $loading }) =>
     $loading &&

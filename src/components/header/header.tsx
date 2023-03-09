@@ -1,6 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react';
-
 import LogoDark from '../../assets/logo_dark.png';
 
 import * as Styled from './header.styles';
