@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import GlobalStyles from 'src/styles/GlobalStyles';
+import { PageLayout } from './pageLayout';
 
 const Layout = ({ children }: { children?: React.ReactNode }) => {
   return (
@@ -21,7 +22,9 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
       <div>
         <GlobalStyles />
         <header>Header</header>
-        <main>{children}</main>
+        <main>
+          <PageLayout>{children}</PageLayout>
+        </main>
         <footer>Footer</footer>
       </div>
     </>

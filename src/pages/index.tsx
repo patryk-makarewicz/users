@@ -29,23 +29,6 @@ const Home = () => {
   return (
     <main>
       <div>
-        <h4>
-          Get Users List Status:{' '}
-          {(() => {
-            if (statusGetUsersList === 'pending') {
-              return 'Loading...';
-            }
-            if (statusGetUsersList === 'failed') {
-              return 'Error';
-            }
-            if (statusGetUsersList === 'succeeded') {
-              return 'Success';
-            }
-            return;
-          })()}
-        </h4>
-      </div>
-      <div>
         {t('users.title')}
         <Button
           onClick={() => {
@@ -56,9 +39,21 @@ const Home = () => {
       </div>
 
       <div>
-        {data.map((user) => (
-          <User key={user.id} user={user} />
-        ))}
+        {(() => {
+          if (statusGetUsersList === 'pending') {
+            return 'Loading...';
+          }
+          if (statusGetUsersList === 'failed') {
+            return 'Error';
+          }
+          return (
+            <>
+              {data?.map((user) => (
+                <User key={user.id} user={user} />
+              ))}
+            </>
+          );
+        })()}
       </div>
     </main>
   );
