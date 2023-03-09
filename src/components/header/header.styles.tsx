@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { breakpoint, zIndex } from '../../styles/variables';
+import { breakpoint, fontSize, zIndex } from '../../styles/variables';
 
 type InnerWrapperProps = {
   $justifyEnd?: boolean;
@@ -49,4 +49,18 @@ export const Logo = styled.img`
   width: 96px;
   height: 40px;
   margin-top: 4px;
+`;
+
+export const Divider = styled.div`
+  height: 20px;
+  width: 1px;
+  margin: 0 17px 0 20px;
+  background-color: var(--border-color);
+`;
+
+export const Text = styled.p`
+  color: var(--text-color);
+  font-size: ${fontSize.m};
+  margin: 0;
+  text-align: center;
 `;

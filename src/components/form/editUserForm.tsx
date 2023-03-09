@@ -10,6 +10,8 @@ import { EditUserFormModel, UserModel } from '@api/users/users.model';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@components/button';
 
+import * as Styled from './form.styles';
+
 export const EditUserForm = (props: { user: UserModel }) => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -37,30 +39,34 @@ export const EditUserForm = (props: { user: UserModel }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('fields.fullName', { required: true })} />
-      {errors.fields?.fullName && <span>This field is required</span>}
+      <Styled.Wrapper>
+        <input {...register('fields.fullName', { required: true })} />
+        {errors.fields?.fullName && <span>This field is required</span>}
 
-      <input {...register('fields.userName', { required: true })} />
-      {errors.fields?.userName && <span>This field is required</span>}
+        <input {...register('fields.userName', { required: true })} />
+        {errors.fields?.userName && <span>This field is required</span>}
 
-      <input {...register('fields.email', { required: true })} />
-      {errors.fields?.fullName && <span>This field is required</span>}
+        <input {...register('fields.email', { required: true })} />
+        {errors.fields?.fullName && <span>This field is required</span>}
 
-      <input {...register('fields.city', { required: true })} />
-      {errors.fields?.city && <span>This field is required</span>}
+        <input {...register('fields.city', { required: true })} />
+        {errors.fields?.city && <span>This field is required</span>}
 
-      <input {...register('id')} hidden />
+        <input {...register('id')} hidden />
+      </Styled.Wrapper>
 
-      <Button
-        secondary
-        onClick={() => {
-          router.push('/');
-        }}>
-        {t('user.cancel')}
-      </Button>
-      <Button type="submit" onClick={() => {}}>
-        {t('user.submit')}
-      </Button>
+      <Styled.Wrapper>
+        <Button
+          secondary
+          onClick={() => {
+            router.push('/');
+          }}>
+          {t('user.cancel')}
+        </Button>
+        <Button type="submit" onClick={() => {}}>
+          {t('user.submit')}
+        </Button>
+      </Styled.Wrapper>
     </form>
   );
 };
