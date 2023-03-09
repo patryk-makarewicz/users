@@ -8,7 +8,8 @@
     "add": "Add new",
     "edit": "Edit",
     "delete": "Delete",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "submit": "Submit"
   },
 
   "footer": {
