@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BASE_URL, headers, useAPImocks } from '../config';
 import { CreateUser, UpdateUser, UserId, UsersList } from './users.dto';
 import { getUsersListMock } from './users.mock';
+import { UserModel } from './users.model';
 
 export const getUsersList = () =>
   useAPImocks
@@ -27,3 +28,8 @@ export const updateUser = (data: UpdateUser) =>
   useAPImocks
     ? null
     : axios.put<UpdateUser>(`${BASE_URL}/users`, data, { headers }).then(({ data }) => data);
+
+export const getUser = (userId: string) =>
+  useAPImocks
+    ? null
+    : axios.get<UserModel>(`${BASE_URL}/users/${userId}`, { headers }).then(({ data }) => data);

@@ -22,10 +22,7 @@ export const User = (props: { user: UserModel }) => {
       <Button
         editColor
         onClick={() => {
-          router.push({
-            pathname: `/edit/${props.user.id}`,
-            query: { data: JSON.stringify(props.user) }
-          });
+          router.push(`/edit/${props.user.id}`);
         }}>
         {t('user.edit')}
       </Button>

@@ -1,21 +1,21 @@
 import { useEffect } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import { useAppDispatch } from 'src/state/hooks';
+import { useAppDispatch, useAppSelector } from 'src/state/hooks';
 
-import { updateUserRequest } from 'src/state/users/actions';
-import { EditUserFormModel, UserModel } from '@api/users/users.model';
+import { getUserRequest, updateUserRequest } from 'src/state/users/actions';
+import { EditUserFormModel } from '@api/users/users.model';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@components/button';
 
 import * as Styled from './form.styles';
 
-export const EditUserForm = (props: { user: UserModel }) => {
+export const EditUserForm = (props: { id: string | string[] | undefined }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const { user, statusGetUser } = useAppSelector((state) => state.usersList);
 
   const {
     register,
@@ -30,12 +30,20 @@ export const EditUserForm = (props: { user: UserModel }) => {
   };
 
   useEffect(() => {
-    setValue('fields.fullName', props.user.fields.fullName);
-    setValue('fields.userName', props.user.fields.userName);
-    setValue('fields.email', props.user.fields.email);
-    setValue('fields.city', props.user.fields.city);
-    setValue('id', props.user.id);
+    if (props.id !== undefined) {
+      dispatch(getUserRequest(props.id as string));
+    }
   }, []);
+
+  useEffect(() => {
+    if (statusGetUser === 'succeeded') {
+      setValue('fields.fullName', user.fields.fullName);
+      setValue('fields.userName', user.fields.userName);
+      setValue('fields.email', user.fields.email);
+      setValue('fields.city', user.fields.city);
+      setValue('id', user.id);
+    }
+  }, [statusGetUser]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

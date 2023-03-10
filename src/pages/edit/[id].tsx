@@ -6,12 +6,12 @@ import * as Styled from '../../styles/edit.styles';
 
 const EditPage = () => {
   const router = useRouter();
-  const user: UserModel = JSON.parse(router.query.data as string);
+  const { id } = router.query;
 
   return (
     <Styled.Container>
       <h2>Edit User</h2>
-      <EditUserForm user={user} />
+      <EditUserForm id={id} />
     </Styled.Container>
   );
 };

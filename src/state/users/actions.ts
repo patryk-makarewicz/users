@@ -1,4 +1,4 @@
-import { createUser, deleteUser, getUsersList, updateUser } from '@api/users/users.api';
+import { createUser, deleteUser, getUser, getUsersList, updateUser } from '@api/users/users.api';
 import { CreateUser, UpdateUser } from '@api/users/users.dto';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -22,6 +22,12 @@ export const createUserRequest = createAsyncThunk('createUser', async (data: Cre
 
 export const updateUserRequest = createAsyncThunk('updateUser', async (data: UpdateUser) => {
   const response = await updateUser(data);
+
+  return response;
+});
+
+export const getUserRequest = createAsyncThunk('getUser', async (userId: string) => {
+  const response = await getUser(userId);
 
   return response;
 });
