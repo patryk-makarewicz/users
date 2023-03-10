@@ -16,11 +16,11 @@ export const Table = ({ dataSource, onHandleDelete, onHandleEdit }: TableProps) 
   const { t } = useTranslation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedId, setSelectedId] = useState('');
+  const [selectedUser, setSelectedUser] = useState({ id: '', name: '' });
 
   const onHandleOk = () => {
     setIsModalOpen(false);
-    onHandleDelete(selectedId);
+    onHandleDelete(selectedUser.id);
   };
 
   const columns = [
@@ -59,13 +59,13 @@ export const Table = ({ dataSource, onHandleDelete, onHandleEdit }: TableProps) 
       title: t('table.columns.delete'),
       dataIndex: 'delete',
       key: 'delete',
-      render: (_: unknown, record: { key: string }) =>
+      render: (_: unknown, record: { key: string; name: string }) =>
         dataSource.length >= 1 ? (
           <Button
             deleteColor
             onClick={() => {
               setIsModalOpen(true);
-              setSelectedId(record.key);
+              setSelectedUser({ id: record.key, name: record.name });
             }}>
             {t('user.delete')}
           </Button>
@@ -88,7 +88,7 @@ export const Table = ({ dataSource, onHandleDelete, onHandleEdit }: TableProps) 
             <Button onClick={onHandleOk}>{t('user.delete')}</Button>
           </Styled.FooterBox>
         ]}>
-        <Styled.ModalText>{t('user.deleteConfirm')}</Styled.ModalText>
+        <Styled.ModalText>{t('user.deleteConfirm', { name: selectedUser.name })}</Styled.ModalText>
       </Modal>
       <AntdTable dataSource={dataSource} columns={columns} />
     </>
