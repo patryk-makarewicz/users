@@ -9,7 +9,19 @@
     "edit": "Edit",
     "delete": "Delete",
     "cancel": "Cancel",
-    "submit": "Submit"
+    "submit": "Submit",
+    "deleteConfirm": "Do You want to delete user {{name}}?"
+  },
+
+  "table": {
+    "columns": {
+      "name": "Name",
+      "userName": "Username",
+      "email": "Email",
+      "city": "City",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
   },
 
   "footer": {

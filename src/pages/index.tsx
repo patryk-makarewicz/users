@@ -1,15 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useRouter } from 'next/router';
 
 import { useAppDispatch, useAppSelector } from 'src/state/hooks';
 import { wrapper } from 'src/state/store';
-import { getUsersListRequest } from 'src/state/users/actions';
+import { deleteUserRequest, getUsersListRequest } from 'src/state/users/actions';
 import { Button } from '@components/button';
-import { User } from '@components/user';
 
 import * as Styled from '../styles/home.styles';
+import { Table } from '@components/table';
+import { TableDataSourceModel } from '@api/users/users.model';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -28,10 +29,35 @@ const Home = () => {
     }
   }, [statusDeleteUser, statusCreateUser, statusUpdateUser]);
 
+  const [dataSource, setDataSource] = useState<TableDataSourceModel>([]);
+  useEffect(() => {
+    if (statusGetUsersList === 'succeeded') {
+      setDataSource(
+        data.map((el) => ({
+          key: el.id,
+          name: el.fields.fullName,
+          userName: el.fields.userName,
+          email: el.fields.email,
+          city: el.fields.city,
+          id: el.id
+        }))
+      );
+    }
+  }, [statusGetUsersList]);
+
+  const onHandleEdit = (id: string) => {
+    router.push(`/edit/${id}`);
+  };
+
+  const onHandleDelete = (id: string) => {
+    dispatch(deleteUserRequest(id));
+  };
+
   return (
     <Styled.Container>
       <Styled.Box>
-        {t('user.list')}
+        <Styled.Text>{t('user.list')}</Styled.Text>
+
         <Button
           onClick={() => {
             router.push('/add');
@@ -40,17 +66,7 @@ const Home = () => {
         </Button>
       </Styled.Box>
 
-      <div>
-        {statusGetUsersList === 'pending' ? 'Loading...' : null}
-        {statusGetUsersList === 'failed' ? 'Error ups... Try again latter' : null}
-        {statusGetUsersList === 'succeeded' ? (
-          <>
-            {data?.map((user) => (
-              <User key={user.id} user={user} />
-            ))}
-          </>
-        ) : null}
-      </div>
+      <Table dataSource={dataSource} onHandleDelete={onHandleDelete} onHandleEdit={onHandleEdit} />
     </Styled.Container>
   );
 };

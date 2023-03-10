@@ -11,7 +11,7 @@ import { Button } from '@components/button';
 
 import * as Styled from './form.styles';
 
-export const EditUserForm = (props: { id: string | string[] | undefined }) => {
+export const EditUserForm = (props: { id: string }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -21,7 +21,8 @@ export const EditUserForm = (props: { id: string | string[] | undefined }) => {
     register,
     handleSubmit,
     formState: { errors },
-    setValue
+    setValue,
+    reset
   } = useForm<EditUserFormModel>();
 
   const onSubmit: SubmitHandler<EditUserFormModel> = (data) => {
@@ -68,6 +69,7 @@ export const EditUserForm = (props: { id: string | string[] | undefined }) => {
           secondary
           onClick={() => {
             router.push('/');
+            reset();
           }}>
           {t('user.cancel')}
         </Button>

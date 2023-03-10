@@ -52,6 +52,7 @@ export const AddUserForm = () => {
           secondary
           onClick={() => {
             router.push('/');
+            reset();
           }}>
           {t('user.cancel')}
         </Button>
