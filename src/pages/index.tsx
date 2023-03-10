@@ -9,7 +9,7 @@ import { getUsersListRequest } from 'src/state/users/actions';
 import { Button } from '@components/button';
 import { User } from '@components/user';
 
-import * as Styled from './home.styles';
+import * as Styled from '../styles/home.styles';
 
 const Home = () => {
   const { t } = useTranslation();
