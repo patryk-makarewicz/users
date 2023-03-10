@@ -12,6 +12,17 @@
     "submit": "Submit"
   },
 
+  "table": {
+    "columns": {
+      "name": "Name",
+      "userName": "Username",
+      "email": "Email",
+      "city": "City",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+
   "footer": {
     "copyright": "Copyright Ⓒ {{year}} makaDev Patryk Makarewicz"
   }

@@ -11,7 +11,7 @@ import { Button } from '@components/button';
 
 import * as Styled from './form.styles';
 
-export const EditUserForm = (props: { id: string | string[] | undefined }) => {
+export const EditUserForm = (props: { id: string }) => {
   const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useAppDispatch();
