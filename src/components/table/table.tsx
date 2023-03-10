@@ -1,8 +1,10 @@
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Table as AntdTable, Modal } from 'antd';
 import { TableDataSourceModel } from '@api/users/users.model';
 import { Button } from '@components/button';
-import { Table as AntdTable } from 'antd';
 
-import { useTranslation } from 'react-i18next';
+import * as Styled from './table.styles';
 
 type TableProps = {
   dataSource: TableDataSourceModel;
@@ -12,6 +14,14 @@ type TableProps = {
 
 export const Table = ({ dataSource, onHandleDelete, onHandleEdit }: TableProps) => {
   const { t } = useTranslation();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState('');
+
+  const onHandleOk = () => {
+    setIsModalOpen(false);
+    onHandleDelete(selectedId);
+  };
 
   const columns = [
     {
@@ -51,11 +61,36 @@ export const Table = ({ dataSource, onHandleDelete, onHandleEdit }: TableProps) 
       key: 'delete',
       render: (_: unknown, record: { key: string }) =>
         dataSource.length >= 1 ? (
-          <Button deleteColor onClick={() => onHandleDelete(record.key)}>
+          <Button
+            deleteColor
+            onClick={() => {
+              setIsModalOpen(true);
+              setSelectedId(record.key);
+            }}>
             {t('user.delete')}
           </Button>
         ) : null
     }
   ];
-  return <AntdTable dataSource={dataSource} columns={columns} />;
+  return (
+    <>
+      <Modal
+        title={t('user.delete')}
+        open={isModalOpen}
+        onOk={onHandleOk}
+        onCancel={() => setIsModalOpen(false)}
+        destroyOnClose
+        footer={[
+          <Styled.FooterBox>
+            <Button secondary key="back" onClick={() => setIsModalOpen(false)}>
+              {t('user.cancel')}
+            </Button>
+            <Button onClick={onHandleOk}>{t('user.delete')}</Button>
+          </Styled.FooterBox>
+        ]}>
+        <Styled.ModalText>{t('user.deleteConfirm')}</Styled.ModalText>
+      </Modal>
+      <AntdTable dataSource={dataSource} columns={columns} />
+    </>
+  );
 };
