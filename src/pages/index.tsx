@@ -7,10 +7,10 @@ import { useAppDispatch, useAppSelector } from 'src/state/hooks';
 import { wrapper } from 'src/state/store';
 import { deleteUserRequest, getUsersListRequest } from 'src/state/users/actions';
 import { Button } from '@components/button';
-import { User } from '@components/user';
 
 import * as Styled from '../styles/home.styles';
 import { Table } from '@components/table';
+import { TableDataSourceModel } from '@api/users/users.model';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -29,7 +29,7 @@ const Home = () => {
     }
   }, [statusDeleteUser, statusCreateUser, statusUpdateUser]);
 
-  const [dataSource, setDataSource] = useState<any>([]);
+  const [dataSource, setDataSource] = useState<TableDataSourceModel>([]);
   useEffect(() => {
     if (statusGetUsersList === 'succeeded') {
       setDataSource(
@@ -45,7 +45,11 @@ const Home = () => {
     }
   }, [statusGetUsersList]);
 
-  const handleDelete = (id: string) => {
+  const onHandleEdit = (id: string) => {
+    router.push(`/edit/${id}`);
+  };
+
+  const onHandleDelete = (id: string) => {
     dispatch(deleteUserRequest(id));
   };
 
@@ -62,19 +66,11 @@ const Home = () => {
       </Styled.Box>
 
       <div>
-        {statusGetUsersList === 'pending' ? 'Loading...' : null}
-        {statusGetUsersList === 'failed' ? 'Error ups... Try again latter' : null}
-        {statusGetUsersList === 'succeeded' ? (
-          <>
-            {data?.map((user) => (
-              <User key={user.id} user={user} />
-            ))}
-          </>
-        ) : null}
-      </div>
-
-      <div>
-        <Table dataSource={dataSource} handleDelete={handleDelete} />
+        <Table
+          dataSource={dataSource}
+          onHandleDelete={onHandleDelete}
+          onHandleEdit={onHandleEdit}
+        />
       </div>
     </Styled.Container>
   );

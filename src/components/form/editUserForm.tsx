@@ -21,7 +21,8 @@ export const EditUserForm = (props: { id: string }) => {
     register,
     handleSubmit,
     formState: { errors },
-    setValue
+    setValue,
+    reset
   } = useForm<EditUserFormModel>();
 
   const onSubmit: SubmitHandler<EditUserFormModel> = (data) => {
@@ -68,6 +69,7 @@ export const EditUserForm = (props: { id: string }) => {
           secondary
           onClick={() => {
             router.push('/');
+            reset();
           }}>
           {t('user.cancel')}
         </Button>

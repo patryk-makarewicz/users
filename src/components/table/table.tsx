@@ -1,24 +1,16 @@
-import { UsersListModel } from '@api/users/users.model';
+import { TableDataSourceModel } from '@api/users/users.model';
 import { Button } from '@components/button';
-import { Popconfirm, Table as AntdTable } from 'antd';
-import { useEffect } from 'react';
+import { Table as AntdTable } from 'antd';
+
 import { useTranslation } from 'react-i18next';
 
-type UserProps = {
-  city: string;
-  email: string;
-  id: string;
-  key: string;
-  name: string;
-  userName: string;
-}[];
-
 type TableProps = {
-  dataSource: UserProps;
-  handleDelete: (key: string) => void;
+  dataSource: TableDataSourceModel;
+  onHandleDelete: (key: string) => void;
+  onHandleEdit: (key: string) => void;
 };
 
-export const Table = ({ dataSource, handleDelete }: TableProps) => {
+export const Table = ({ dataSource, onHandleDelete, onHandleEdit }: TableProps) => {
   const { t } = useTranslation();
 
   const columns = [
@@ -45,17 +37,23 @@ export const Table = ({ dataSource, handleDelete }: TableProps) => {
     {
       title: t('table.columns.edit'),
       dataIndex: 'edit',
-      key: 'edit'
+      key: 'edit',
+      render: (_: unknown, record: { key: string }) =>
+        dataSource.length >= 1 ? (
+          <Button editColor onClick={() => onHandleEdit(record.key)}>
+            {t('user.edit')}
+          </Button>
+        ) : null
     },
     {
       title: t('table.columns.delete'),
       dataIndex: 'delete',
       key: 'delete',
-      render: (_: any, record: { key: string }) =>
+      render: (_: unknown, record: { key: string }) =>
         dataSource.length >= 1 ? (
-          <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-            <a>{record.key}</a>
-          </Popconfirm>
+          <Button deleteColor onClick={() => onHandleDelete(record.key)}>
+            {t('user.delete')}
+          </Button>
         ) : null
     }
   ];

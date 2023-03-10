@@ -40,3 +40,12 @@ export type EditUserFormModel = {
     city: string;
   };
 };
+
+export type TableDataSourceModel = {
+  city: string;
+  email: string;
+  id: string;
+  key: string;
+  name: string;
+  userName: string;
+}[];
