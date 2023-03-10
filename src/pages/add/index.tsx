@@ -1,6 +1,6 @@
 import { AddUserForm } from '@components/form';
 
-import * as Styled from './add.styles';
+import * as Styled from '../../styles/add.styles';
 
 const AddPage = () => {
   return (

@@ -2,7 +2,7 @@ import { UserModel } from '@api/users/users.model';
 import { EditUserForm } from '@components/form';
 import { useRouter } from 'next/router';
 
-import * as Styled from './edit.styles';
+import * as Styled from '../../styles/edit.styles';
 
 const EditPage = () => {
   const router = useRouter();
