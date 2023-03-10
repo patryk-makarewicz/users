@@ -90,7 +90,7 @@ export const Table = ({ dataSource, onHandleDelete, onHandleEdit }: TableProps) 
         ]}>
         <Styled.ModalText>{t('user.deleteConfirm', { name: selectedUser.name })}</Styled.ModalText>
       </Modal>
-      <AntdTable dataSource={dataSource} columns={columns} />
+      <Styled.AntdTable dataSource={dataSource} columns={columns} />
     </>
   );
 };

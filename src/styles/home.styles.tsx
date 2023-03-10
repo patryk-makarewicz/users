@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { padding } from '.';
+import { fontWeight, padding } from '.';
 
 export const Container = styled.div`
   width: 100%;
@@ -12,7 +12,13 @@ export const Container = styled.div`
 `;
 
 export const Box = styled.div`
-  width: 300px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+`;
+
+export const Text = styled.p`
+  font-weight: ${fontWeight.semiBold};
 `;

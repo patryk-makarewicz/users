@@ -56,7 +56,8 @@ const Home = () => {
   return (
     <Styled.Container>
       <Styled.Box>
-        {t('user.list')}
+        <Styled.Text>{t('user.list')}</Styled.Text>
+
         <Button
           onClick={() => {
             router.push('/add');
@@ -65,13 +66,7 @@ const Home = () => {
         </Button>
       </Styled.Box>
 
-      <div>
-        <Table
-          dataSource={dataSource}
-          onHandleDelete={onHandleDelete}
-          onHandleEdit={onHandleEdit}
-        />
-      </div>
+      <Table dataSource={dataSource} onHandleDelete={onHandleDelete} onHandleEdit={onHandleEdit} />
     </Styled.Container>
   );
 };
