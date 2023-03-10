@@ -13,6 +13,7 @@ export const Container = styled.div`
 
 export const Box = styled.div`
   width: 100%;
+  max-width: 1240px;
   display: flex;
   justify-content: space-between;
   align-items: center;

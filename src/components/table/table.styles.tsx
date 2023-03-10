@@ -2,9 +2,8 @@ import styled from 'styled-components';
 import { Table } from 'antd';
 
 export const AntdTable: typeof Table = styled(Table)`
-  width: 100%;
-  min-width: 800px;
-  overflow-y: scroll;
+  width: 1240px;
+  overflow-x: scroll;
 `;
 
 export const FooterBox = styled.div`
