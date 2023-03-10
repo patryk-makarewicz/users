@@ -11,14 +11,16 @@ This is the website to manage users.
 ✔ Redux-toolkit<br />
 ✔ TypeScript<br />
 ✔ JavaScript<br />
+✔ Rest API<br />
+✔ React-hook-form<br />
 ✔ AirTable<br />
 ✔ Styled Components<br />
 
-<!-- ## Link to website
+## Link to website
 
 To watch click [here]
 
-[here]: https:// -->
+[here]: https://makadev-users-manager.netlify.app/
 
 # Getting Started
 
