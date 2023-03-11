@@ -4,7 +4,12 @@ import Head from 'next/head';
 import GlobalStyles from 'src/styles/GlobalStyles';
 import { PageLayout } from './pageLayout';
 
-const Layout = ({ children }: { children?: React.ReactNode }) => {
+type LayoutProps = {
+  children: React.ReactNode;
+  isLoadingPage: boolean;
+};
+
+const Layout = ({ children, isLoadingPage }: LayoutProps) => {
   return (
     <>
       <Head>
@@ -24,11 +29,13 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
 
       <>
         <GlobalStyles />
-        <Header />
-        <main>
-          <PageLayout>{children}</PageLayout>
-        </main>
-        <Footer />
+        <div style={isLoadingPage ? { display: 'none' } : { display: 'block' }}>
+          <Header />
+          <main>
+            <PageLayout>{children}</PageLayout>
+          </main>
+          <Footer />
+        </div>
       </>
     </>
   );
