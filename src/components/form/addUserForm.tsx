@@ -9,6 +9,7 @@ import { createUserRequest } from 'src/state/users/actions';
 import { Button } from '@components/button';
 
 import * as Styled from './form.styles';
+import { MainFields } from './mainFields';
 
 export const AddUserForm = () => {
   const { t } = useTranslation();
@@ -33,33 +34,23 @@ export const AddUserForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Styled.Wrapper>
-        <input {...register('fields.fullName', { required: true })} />
-        {errors.fields?.fullName && <span>This field is required</span>}
+      <Styled.FormBox>
+        <MainFields errors={errors} register={register} />
 
-        <input {...register('fields.userName', { required: true })} />
-        {errors.fields?.userName && <span>This field is required</span>}
-
-        <input {...register('fields.email', { required: true })} />
-        {errors.fields?.fullName && <span>This field is required</span>}
-
-        <input {...register('fields.city', { required: true })} />
-        {errors.fields?.city && <span>This field is required</span>}
-      </Styled.Wrapper>
-
-      <Styled.Wrapper>
-        <Button
-          secondary
-          onClick={() => {
-            router.push('/');
-            reset();
-          }}>
-          {t('user.cancel')}
-        </Button>
-        <Button type="submit" onClick={() => {}}>
-          {t('user.submit')}
-        </Button>
-      </Styled.Wrapper>
+        <Styled.Wrapper>
+          <Button
+            secondary
+            onClick={() => {
+              router.push('/');
+              reset();
+            }}>
+            {t('user.cancel')}
+          </Button>
+          <Button type="submit" onClick={() => {}}>
+            {t('user.submit')}
+          </Button>
+        </Styled.Wrapper>
+      </Styled.FormBox>
     </form>
   );
 };

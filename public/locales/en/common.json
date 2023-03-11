@@ -26,7 +26,7 @@
 
   "form": {
     "fullName": "Full name",
-    "lastName": "Last name",
+    "userName": "User name",
     "email": "E-mail",
     "city": "City",
     "cancel": "Cancel",
