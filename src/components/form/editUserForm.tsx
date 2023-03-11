@@ -48,35 +48,82 @@ export const EditUserForm = (props: { id: string | string[] | undefined }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Styled.Wrapper>
-        <input {...register('fields.fullName', { required: true })} />
-        {errors.fields?.fullName && <span>This field is required</span>}
+      <Styled.FormBox>
+        <Styled.Container>
+          <Styled.Label htmlFor="fullName">{t('form.fullName')}</Styled.Label>
+          <Styled.Input
+            {...register('fields.fullName', { required: true })}
+            maxLength={65}
+            id="fullName"
+            type="text"
+            name="fullName"
+            placeholder={t('form.fullName')}
+            $error={!!errors.fields?.fullName}
+          />
+          {errors.fields?.fullName && (
+            <Styled.ErrorMessage>{t('form.isRequired')}</Styled.ErrorMessage>
+          )}
+        </Styled.Container>
+        <Styled.Container>
+          <Styled.Label htmlFor="userName">{t('form.userName')}</Styled.Label>
+          <Styled.Input
+            {...register('fields.userName', { required: true })}
+            maxLength={65}
+            id="userName"
+            type="text"
+            name="userName"
+            placeholder={t('form.userName')}
+            $error={!!errors.fields?.userName}
+          />
+          {errors.fields?.userName && (
+            <Styled.ErrorMessage>{t('form.isRequired')}</Styled.ErrorMessage>
+          )}
+        </Styled.Container>
+        <Styled.Container>
+          <Styled.Label htmlFor="email">{t('form.email')}</Styled.Label>
+          <Styled.Input
+            {...register('fields.email', { required: true })}
+            maxLength={65}
+            id="email"
+            type="email"
+            name="email"
+            placeholder={t('form.email')}
+            $error={!!errors.fields?.email}
+          />
+          {errors.fields?.email && (
+            <Styled.ErrorMessage>{t('form.isRequired')}</Styled.ErrorMessage>
+          )}
+        </Styled.Container>
+        <Styled.Container>
+          <Styled.Label htmlFor="city">{t('form.city')}</Styled.Label>
+          <Styled.Input
+            {...register('fields.city', { required: true })}
+            maxLength={65}
+            id="city"
+            type="text"
+            name="city"
+            placeholder={t('form.city')}
+            $error={!!errors.fields?.city}
+          />
+          {errors.fields?.city && <Styled.ErrorMessage>{t('form.isRequired')}</Styled.ErrorMessage>}
+        </Styled.Container>
 
-        <input {...register('fields.userName', { required: true })} />
-        {errors.fields?.userName && <span>This field is required</span>}
+        <Styled.Input id="id" type="text" {...register('id')} hidden />
 
-        <input {...register('fields.email', { required: true })} />
-        {errors.fields?.fullName && <span>This field is required</span>}
-
-        <input {...register('fields.city', { required: true })} />
-        {errors.fields?.city && <span>This field is required</span>}
-
-        <input {...register('id')} hidden />
-      </Styled.Wrapper>
-
-      <Styled.Wrapper>
-        <Button
-          secondary
-          onClick={() => {
-            router.push('/');
-            reset();
-          }}>
-          {t('user.cancel')}
-        </Button>
-        <Button type="submit" onClick={() => {}}>
-          {t('user.submit')}
-        </Button>
-      </Styled.Wrapper>
+        <Styled.Wrapper>
+          <Button
+            secondary
+            onClick={() => {
+              router.push('/');
+              reset();
+            }}>
+            {t('form.cancel')}
+          </Button>
+          <Button type="submit" onClick={() => {}}>
+            {t('form.submit')}
+          </Button>
+        </Styled.Wrapper>
+      </Styled.FormBox>
     </form>
   );
 };
