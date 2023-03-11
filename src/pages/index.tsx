@@ -71,12 +71,8 @@ const Home = () => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {
-  await store.dispatch(getUsersListRequest());
-
-  return {
-    props: {}
-  };
+Home.getInitialProps = wrapper.getInitialPageProps(({ dispatch }) => async () => {
+  await dispatch(getUsersListRequest());
 });
 
 export default Home;
