@@ -7,26 +7,25 @@ import MainLayout from '../layouts/main';
 import { Spinner } from '@components/spinner';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [isPageLoading, setIsPageLoading] = useState(true);
+  const [isLoadingPage, setIsLoadingPage] = useState(true);
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.onload = function () {
-        setIsPageLoading(false);
+        setIsLoadingPage(false);
       };
     }
   }, []);
 
   return (
     <>
-      {isPageLoading ? (
+      {isLoadingPage ? (
         <div style={{ height: '100vh' }}>
           <Spinner width="50px" height="50px" />
         </div>
-      ) : (
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
-      )}
+      ) : null}
+      <MainLayout isLoadingPage={isLoadingPage}>
+        <Component {...pageProps} />
+      </MainLayout>
     </>
   );
 }
