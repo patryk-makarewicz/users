@@ -20,7 +20,7 @@ export const Container = styled.div`
 export const ErrorMessage = styled.span`
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 6px;
   font-size: ${fontSize.s};
   color: ${colors.warning};
 `;

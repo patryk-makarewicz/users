@@ -1,13 +1,15 @@
-import { Button } from '@components/button';
+//@ts-ignore
+import { UseFormMethods } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+
+import { Button } from '@components/button';
+
 import * as Styled from './form.styles';
 
-type MainFieldsProps = {
-  register: any;
-  errors: any;
-  reset: any;
-};
+interface MainFieldsProps extends Partial<Pick<UseFormMethods, 'register' | 'errors'>> {
+  reset: () => void;
+}
 
 export const MainFields = ({ register, errors, reset }: MainFieldsProps) => {
   const { t } = useTranslation();
