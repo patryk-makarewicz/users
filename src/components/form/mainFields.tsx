@@ -1,15 +1,20 @@
+import { Button } from '@components/button';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import * as Styled from './form.styles';
 
 type MainFieldsProps = {
   register: any;
   errors: any;
+  reset: any;
 };
 
-export const MainFields = ({ register, errors }: MainFieldsProps) => {
+export const MainFields = ({ register, errors, reset }: MainFieldsProps) => {
   const { t } = useTranslation();
+  const router = useRouter();
+
   return (
-    <>
+    <Styled.FormBox>
       <Styled.Container>
         <Styled.Label htmlFor="fields.fullName">{t('form.fullName')}</Styled.Label>
         <Styled.Input
@@ -66,6 +71,20 @@ export const MainFields = ({ register, errors }: MainFieldsProps) => {
         />
         {errors.fields?.city && <Styled.ErrorMessage>{t('form.isRequired')}</Styled.ErrorMessage>}
       </Styled.Container>
-    </>
+
+      <Styled.Wrapper>
+        <Button
+          secondary
+          onClick={() => {
+            router.push('/');
+            reset();
+          }}>
+          {t('form.cancel')}
+        </Button>
+        <Button type="submit" onClick={() => {}}>
+          {t('form.submit')}
+        </Button>
+      </Styled.Wrapper>
+    </Styled.FormBox>
   );
 };

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { colors, fontSize } from '../../styles';
+import { colors, fontSize, margin } from '../../styles';
 
 type FormProps = {
   $error?: boolean;
@@ -53,8 +53,11 @@ export const Input = styled.input<FormProps>`
     `}
 `;
 
-export const Paragraph = styled.p`
+export const Title = styled.p`
+  font-size: ${fontSize.xl};
+  margin-bottom: ${margin.xl};
   text-align: center;
+  font-weight: 600;
 `;
 
 export const FormBox = styled.div`
