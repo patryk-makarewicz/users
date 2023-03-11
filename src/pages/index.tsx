@@ -20,6 +20,10 @@ const Home = () => {
     useAppSelector((state) => state.usersList);
 
   useEffect(() => {
+    dispatch(getUsersListRequest());
+  }, []);
+
+  useEffect(() => {
     if (
       statusDeleteUser === 'succeeded' ||
       statusCreateUser === 'succeeded' ||
