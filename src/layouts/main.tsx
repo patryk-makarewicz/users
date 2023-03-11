@@ -6,10 +6,9 @@ import { PageLayout } from './pageLayout';
 
 type LayoutProps = {
   children: React.ReactNode;
-  isLoadingPage: boolean;
 };
 
-const Layout = ({ children, isLoadingPage }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Head>
@@ -29,13 +28,11 @@ const Layout = ({ children, isLoadingPage }: LayoutProps) => {
 
       <>
         <GlobalStyles />
-        <div style={isLoadingPage ? { display: 'none' } : { display: 'block' }}>
-          <Header />
-          <main>
-            <PageLayout>{children}</PageLayout>
-          </main>
-          <Footer />
-        </div>
+        <Header />
+        <main>
+          <PageLayout>{children}</PageLayout>
+        </main>
+        <Footer />
       </>
     </>
   );
