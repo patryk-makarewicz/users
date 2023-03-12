@@ -24,6 +24,17 @@
     }
   },
 
+  "form": {
+    "fullName": "Full name",
+    "userName": "User name",
+    "email": "E-mail",
+    "city": "City",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "isRequired": "This field is required!",
+    "sent": "Your message has been sent successfully"
+  },
+
   "footer": {
     "copyright": "Copyright Ⓒ {{year}} makaDev Patryk Makarewicz"
   }

@@ -1,4 +1,3 @@
-import { UserModel } from '@api/users/users.model';
 import { EditUserForm } from '@components/form';
 import { useRouter } from 'next/router';
 
@@ -10,7 +9,7 @@ const EditPage = () => {
 
   return (
     <Styled.Container>
-      <h2>Edit User</h2>
+      <h3>Edit User</h3>
       <EditUserForm id={id} />
     </Styled.Container>
   );

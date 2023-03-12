@@ -5,7 +5,7 @@ import * as Styled from '../../styles/add.styles';
 const AddPage = () => {
   return (
     <Styled.Container>
-      <h2>Add User</h2>
+      <h3>Add User</h3>
       <AddUserForm />
     </Styled.Container>
   );
