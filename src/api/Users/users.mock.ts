@@ -1,18 +1,5 @@
 import { request } from '@api/request';
-
-export type UsersList = {
-  records: {
-    id: string;
-    createdTime: string;
-    fields: {
-      fullName: string;
-      userName: string;
-      email: string;
-      city: string;
-      id: string;
-    };
-  }[];
-};
+import { UsersList } from '@api/users/users.dto';
 
 export const mockUsersList: UsersList = {
   records: [

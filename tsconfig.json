@@ -84,8 +84,7 @@
     "node_modules"
   ],
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
+    "src/**/*",
     "next-env.d.ts",
     "next.config.js"
   ]
