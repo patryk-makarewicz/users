@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ES2017",
     "lib": [
       "es6",
@@ -24,7 +25,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "baseUrl": ".",
     "paths": {
       "@components/*": [
         "./src/components/*"
@@ -32,35 +32,8 @@
       "@api/*": [
         "./src/api/*"
       ],
-      "@models/*": [
-        "./src/models/*"
-      ],
-      "@screens/*": [
-        "./src/screens/*"
-      ],
       "@hooks/*": [
         "./src/hooks/*"
-      ],
-      "@services/*": [
-        "./src/services/*"
-      ],
-      "@constants": [
-        "./src/constants.ts"
-      ],
-      "@context/*": [
-        "./src/context/*"
-      ],
-      "@queries/*": [
-        "./src/queries/*"
-      ],
-      "@data/*": [
-        "./src/data/*"
-      ],
-      "@typeDefs/*": [
-        "./src/types/*"
-      ],
-      "@generated/*": [
-        "./src/generated/*"
       ],
       "@public/*": [
         "./public/*"
@@ -74,9 +47,6 @@
       "@assets/*": [
         "./src/assets/*"
       ],
-      "@header/*": [
-        "./src/header/*"
-      ]
     },
     "incremental": true
   },
@@ -84,6 +54,7 @@
     "node_modules"
   ],
   "include": [
+    "pages/**/*",
     "src/**/*",
     "next-env.d.ts",
     "next.config.js"
