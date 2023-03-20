@@ -6,7 +6,7 @@ module.exports = {
     API_KEY: process.env.REACT_APP_API_KEY,
     DB_ID: process.env.REACT_APP_DB_ID
   },
-  distDir: 'build',
+  target: 'serverless', // add this line
   compiler: {
     // Enables the styled-components SWC transform
     styledComponents: true
