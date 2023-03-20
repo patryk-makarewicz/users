@@ -75,8 +75,16 @@ const Home = () => {
   );
 };
 
-Home.getInitialProps = wrapper.getInitialPageProps(({ dispatch }) => async () => {
-  await dispatch(getUsersListRequest());
+// Home.getInitialProps = wrapper.getInitialPageProps(({ dispatch }) => async () => {
+//   await dispatch(getUsersListRequest());
+// });
+
+export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {
+  await store.dispatch(getUsersListRequest());
+
+  return {
+    props: {}
+  };
 });
 
 export default Home;
