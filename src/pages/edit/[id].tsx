@@ -1,4 +1,5 @@
 import { EditUserForm } from '@components/form';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 
 import * as Styled from '../../styles/edit.styles';
@@ -16,3 +17,8 @@ const EditPage = () => {
 };
 
 export default EditPage;
+export async function getServerSideProps({ locale }: any) {
+  return {
+    props: { ...(await serverSideTranslations(locale, ['common'])) } // will be passed to the page component as props
+  };
+}
