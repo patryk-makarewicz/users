@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 
 import { CreateUserFormModel } from '@api/users/users.model';

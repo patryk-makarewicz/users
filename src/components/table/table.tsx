@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 import { Table as AntdTable, Modal } from 'antd';
 import { TableDataSourceModel } from '@api/users/users.model';
 import { Button } from '@components/button';
