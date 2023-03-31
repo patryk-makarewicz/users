@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "ES2017",
+    "target": "ES6",
     "lib": [
       "es6",
       "dom",
@@ -46,7 +46,7 @@
       ],
       "@assets/*": [
         "./src/assets/*"
-      ],
+      ]
     },
     "incremental": true
   },
