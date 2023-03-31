@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 
 import { useAppDispatch, useAppSelector } from 'src/state/hooks';
 import { wrapper } from 'src/state/store';
 import { deleteUserRequest, getUsersListRequest } from 'src/state/users/actions';
+import { TableDataSourceModel } from '@api/users/users.model';
 import { Button } from '@components/button';
+import { Table } from '@components/table';
 
 import * as Styled from '../styles/home.styles';
-import { Table } from '@components/table';
-import { TableDataSourceModel } from '@api/users/users.model';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -18,10 +18,6 @@ const Home = () => {
   const dispatch = useAppDispatch();
   const { data, statusGetUsersList, statusDeleteUser, statusCreateUser, statusUpdateUser } =
     useAppSelector((state) => state.usersList);
-
-  useEffect(() => {
-    dispatch(getUsersListRequest());
-  }, []);
 
   useEffect(() => {
     if (
@@ -75,15 +71,11 @@ const Home = () => {
   );
 };
 
-// Home.getInitialProps = wrapper.getInitialPageProps(({ dispatch }) => async () => {
-//   await dispatch(getUsersListRequest());
-// });
-
-export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }: any) => {
   await store.dispatch(getUsersListRequest());
 
   return {
-    props: {}
+    props: { ...(await serverSideTranslations(locale, ['common'])) }
   };
 });
 
