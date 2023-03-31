@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app';
 import { wrapper } from 'src/state/store';
-import '../../i18n';
 
-import MainLayout from '../layouts/main';
+import MainLayout from 'src/layouts/main';
+import { appWithTranslation } from 'next-i18next';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -12,4 +12,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default wrapper.withRedux(MyApp);
+export default wrapper.withRedux(appWithTranslation(MyApp));
