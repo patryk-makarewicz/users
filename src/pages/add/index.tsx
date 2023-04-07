@@ -14,8 +14,6 @@ const AddPage = () => {
   );
 };
 
-export default AddPage;
-
 export const getStaticProps = async ({ locale }: any) => {
   const translations = await serverSideTranslations(locale, ['common']);
 
@@ -25,3 +23,5 @@ export const getStaticProps = async ({ locale }: any) => {
     }
   };
 };
+
+export default AddPage;

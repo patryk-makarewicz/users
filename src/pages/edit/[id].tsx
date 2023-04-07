@@ -17,10 +17,13 @@ const EditPage = () => {
   );
 };
 
-export default EditPage;
+export const getServerSideProps = async ({ locale }: any) => {
+  const translations = await serverSideTranslations(locale, ['common']);
 
-export async function getServerSideProps({ locale }: any) {
   return {
-    props: { ...(await serverSideTranslations(locale, ['common'])) }
+    props: {
+      ...translations
+    }
   };
-}
+};
+export default EditPage;
