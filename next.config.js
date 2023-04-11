@@ -1,12 +1,18 @@
 /** @type {import('next').NextConfig} */
 
+const { i18n } = require('./next-i18next.config');
+
 module.exports = {
   reactStrictMode: true,
+  i18n,
+  experimental: {
+    esmExternals: true
+  },
   env: {
     API_KEY: process.env.REACT_APP_API_KEY,
     DB_ID: process.env.REACT_APP_DB_ID
   },
-  distDir: 'build',
+  target: 'serverless',
   compiler: {
     // Enables the styled-components SWC transform
     styledComponents: true

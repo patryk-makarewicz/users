@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "baseUrl": ".",
+    "target": "ES6",
     "lib": [
       "es6",
       "dom",
@@ -24,7 +25,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "baseUrl": ".",
     "paths": {
       "@components/*": [
         "./src/components/*"
@@ -32,35 +32,8 @@
       "@api/*": [
         "./src/api/*"
       ],
-      "@models/*": [
-        "./src/models/*"
-      ],
-      "@screens/*": [
-        "./src/screens/*"
-      ],
       "@hooks/*": [
         "./src/hooks/*"
-      ],
-      "@services/*": [
-        "./src/services/*"
-      ],
-      "@constants": [
-        "./src/constants.ts"
-      ],
-      "@context/*": [
-        "./src/context/*"
-      ],
-      "@queries/*": [
-        "./src/queries/*"
-      ],
-      "@data/*": [
-        "./src/data/*"
-      ],
-      "@typeDefs/*": [
-        "./src/types/*"
-      ],
-      "@generated/*": [
-        "./src/generated/*"
       ],
       "@public/*": [
         "./public/*"
@@ -73,9 +46,6 @@
       ],
       "@assets/*": [
         "./src/assets/*"
-      ],
-      "@header/*": [
-        "./src/header/*"
       ]
     },
     "incremental": true
@@ -84,8 +54,8 @@
     "node_modules"
   ],
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
+    "pages/**/*",
+    "src/**/*",
     "next-env.d.ts",
     "next.config.js"
   ]
