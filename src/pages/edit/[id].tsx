@@ -1,8 +1,8 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { EditUserForm } from '@components/form';
-import * as Styled from '../../styles/edit.styles';
+import { EditUserForm } from '@/components/form';
+import * as Styled from '@/styles/edit.styles';
 
 const EditPage = () => {
   const { t } = useTranslation();

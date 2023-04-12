@@ -3,7 +3,7 @@ import { UseFormMethods } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
-import { Button } from '@components/button';
+import { Button } from '@/components/button';
 
 import * as Styled from './form.styles';
 

@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import { useAppDispatch, useAppSelector } from 'src/state/hooks';
+import { useAppDispatch, useAppSelector } from '@/state/hooks';
 
-import { getUserRequest, updateUserRequest } from 'src/state/users/actions';
-import { EditUserFormModel } from '@api/users/users.model';
+import { getUserRequest, updateUserRequest } from '@/state/users/actions';
+import { EditUserFormModel } from '@/api/users/users.model';
 
 import { MainFields } from './mainFields';
 

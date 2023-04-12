@@ -2,7 +2,7 @@
 
 const { i18n } = require('./next-i18next.config');
 
-module.exports = {
+const nextConfig = {
   reactStrictMode: true,
   i18n,
   experimental: {
@@ -12,7 +12,6 @@ module.exports = {
     API_KEY: process.env.REACT_APP_API_KEY,
     DB_ID: process.env.REACT_APP_DB_ID
   },
-  target: 'serverless',
   compiler: {
     // Enables the styled-components SWC transform
     styledComponents: true
@@ -23,3 +22,5 @@ module.exports = {
     ignoreDuringBuilds: true
   }
 };
+
+module.exports = nextConfig;

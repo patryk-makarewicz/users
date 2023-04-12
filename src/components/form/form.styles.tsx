@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { colors, fontSize, margin } from '../../styles';
+import { colors, fontSize, margin } from '@/styles';
 
 type FormProps = {
   $error?: boolean;

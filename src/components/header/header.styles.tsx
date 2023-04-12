@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { breakpoint, fontSize, zIndex } from '../../styles/variables';
+import { breakpoint, fontSize, zIndex } from '@/styles/variables';
 
 type InnerWrapperProps = {
   $justifyEnd?: boolean;

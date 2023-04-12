@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-import { BASE_URL, headers, useAPImocks } from '@api/config';
-import { CreateUser, UpdateUser, UserId, UsersList } from '@api/users/users.dto';
-import { getUsersListMock } from '@api/users/users.mock';
-import { UserModel } from '@api/users/users.model';
+import { BASE_URL, headers, useAPImocks } from '@/api/config';
+import { CreateUser, UpdateUser, UserId, UsersList } from '@/api/users/users.dto';
+import { getUsersListMock } from '@/api/users/users.mock';
+import { UserModel } from '@/api/users/users.model';
 
 export const getUsersList = () =>
   useAPImocks

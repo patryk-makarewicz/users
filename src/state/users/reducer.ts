@@ -1,4 +1,4 @@
-import { UserModel, UsersListModel } from '@api/users/users.model';
+import { UserModel, UsersListModel } from '@/api/users/users.model';
 
 import { createReducer } from '@reduxjs/toolkit';
 import {

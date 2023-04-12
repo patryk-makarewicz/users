@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 
-import { CreateUserFormModel } from '@api/users/users.model';
+import { CreateUserFormModel } from '@/api/users/users.model';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useAppDispatch } from 'src/state/hooks';
-import { createUserRequest } from 'src/state/users/actions';
+import { useAppDispatch } from '@/state/hooks';
+import { createUserRequest } from '@/state/users/actions';
 import { MainFields } from './mainFields';
 
 export const AddUserForm = () => {

@@ -1,7 +1,7 @@
 import { Action, AnyAction, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 
-import usersReducer from '../state/users/reducer';
+import usersReducer from '@/state/users/reducer';
 
 const combinedReducer = combineReducers({
   usersList: usersReducer

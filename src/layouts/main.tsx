@@ -1,7 +1,7 @@
-import { Footer } from '@components/footer';
-import { Header } from '@components/header';
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 import Head from 'next/head';
-import GlobalStyles from 'src/styles/GlobalStyles';
+import GlobalStyles from '@/styles/GlobalStyles';
 import { PageLayout } from './pageLayout';
 
 type LayoutProps = {

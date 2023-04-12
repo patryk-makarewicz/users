@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next';
 
-import LogoDark from '../../assets/logo_dark.png';
+import LogoDark from '@/assets/logo_dark.png';
 
 import * as Styled from './footer.styles';
 

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import { Table as AntdTable, Modal } from 'antd';
-import { TableDataSourceModel } from '@api/users/users.model';
-import { Button } from '@components/button';
+import { Modal } from 'antd';
+import { TableDataSourceModel } from '@/api/users/users.model';
+import { Button } from '@/components/button';
 
 import * as Styled from './table.styles';
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { breakpoint, fontSize, zIndex } from '../../styles/variables';
+import { breakpoint, fontSize, zIndex } from '@/styles/variables';
 
 export const LogoWrapper = styled.div`
   margin-bottom: 5px;

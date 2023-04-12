@@ -1,5 +1,5 @@
-import { request } from '@api/request';
-import { UsersList } from '@api/users/users.dto';
+import { request } from '@/api/request';
+import { UsersList } from '@/api/users/users.dto';
 
 export const mockUsersList: UsersList = {
   records: [

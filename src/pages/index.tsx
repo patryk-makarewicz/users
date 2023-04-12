@@ -3,12 +3,12 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 
-import { useAppDispatch, useAppSelector } from 'src/state/hooks';
-import { wrapper } from 'src/state/store';
-import { deleteUserRequest, getUsersListRequest } from 'src/state/users/actions';
-import { TableDataSourceModel } from '@api/users/users.model';
-import { Button } from '@components/button';
-import { Table } from '@components/table';
+import { useAppDispatch, useAppSelector } from '@/state/hooks';
+import { wrapper } from '@/state/store';
+import { deleteUserRequest, getUsersListRequest } from '@/state/users/actions';
+import { TableDataSourceModel } from '@/api/users/users.model';
+import { Button } from '@/components/button';
+import { Table } from '@/components/table';
 
 import * as Styled from '../styles/home.styles';
 
@@ -33,7 +33,7 @@ const Home = () => {
   useEffect(() => {
     if (statusGetUsersList === 'succeeded') {
       setDataSource(
-        data.map((el) => ({
+        data.map((el: any) => ({
           key: el.id,
           name: el.fields.fullName,
           userName: el.fields.userName,
