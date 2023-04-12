@@ -1,0 +1,43 @@
+{
+  "header": {
+    "info": "In construction - the main functionality of the application works"
+  },
+
+  "user": {
+    "list": "Users list",
+    "add": "Add new",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "deleteConfirm": "Do You want to delete user {{name}}?",
+    "editUser": "Edit User",
+    "addUser": "Add User"
+  },
+
+  "table": {
+    "columns": {
+      "name": "Name",
+      "userName": "Username",
+      "email": "Email",
+      "city": "City",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+
+  "form": {
+    "fullName": "Full name",
+    "userName": "User name",
+    "email": "E-mail",
+    "city": "City",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "isRequired": "This field is required!",
+    "sent": "Your message has been sent successfully"
+  },
+
+  "footer": {
+    "copyright": "Copyright Ⓒ {{year}} makaDev Patryk Makarewicz"
+  }
+}
