@@ -13,7 +13,7 @@ type StatusType = 'idle' | 'pending' | 'succeeded' | 'failed';
 
 type UserListModel = {
   data: UsersListModel;
-  user: UserModel | null;
+  user: any;
   statusGetUsersList: StatusType;
   statusDeleteUser: StatusType;
   statusCreateUser: StatusType;
