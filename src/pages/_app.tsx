@@ -1,8 +1,7 @@
-import type { AppProps } from 'next/app';
-import { wrapper } from '@/state/store';
-
 import MainLayout from '@/layouts/main';
+import { wrapper } from '@/state/store';
 import { appWithTranslation } from 'next-i18next';
+import type { AppProps } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,10 +14,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default wrapper.withRedux(appWithTranslation(MyApp));
 
 // ----- TODO -----
-// 1. locale: any
+// 1. remove `any` from project
 // 2. only ssr or mix with static?
-// 3. remove netlify
-// 4. new fresh next.js and config from start
-// 5. import { UsersList } from '@api/users/users.dto'; - bug?
-// 6. deployment on Vercel
-// 7. clear models
+// 3. clear models
+// 4. no data on deploy version
+// 5. change paths in head to vercel urls
