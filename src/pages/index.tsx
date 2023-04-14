@@ -30,7 +30,7 @@ const Home = () => {
   useEffect(() => {
     if (statusGetUsersList === 'succeeded') {
       setDataSource(
-        data.map((el: any) => ({
+        data.map((el) => ({
           key: el.id,
           name: el.fields.fullName,
           userName: el.fields.userName,
@@ -68,7 +68,7 @@ const Home = () => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }: any) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale = 'en' }) => {
   await store.dispatch(getUsersListRequest());
 
   return {

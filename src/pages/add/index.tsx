@@ -1,7 +1,12 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 import { AddUserForm } from '@/components/form';
 import * as Styled from '@/styles/add.styles';
+
+type AddPageProps = {
+  locale: string;
+};
 
 const AddPage = () => {
   const { t } = useTranslation();
@@ -14,7 +19,7 @@ const AddPage = () => {
   );
 };
 
-export const getStaticProps = async ({ locale }: any) => {
+export const getStaticProps = async ({ locale }: AddPageProps) => {
   const translations = await serverSideTranslations(locale, ['common']);
 
   return {

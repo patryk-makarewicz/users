@@ -14,7 +14,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default wrapper.withRedux(appWithTranslation(MyApp));
-
-// ----- TODO -----
-// 1. remove `any` from project
-// 2. clear models
