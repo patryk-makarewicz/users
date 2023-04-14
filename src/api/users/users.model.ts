@@ -1,14 +1,4 @@
-export type UsersListModel = {
-  id: string;
-  createdTime: string;
-  fields: {
-    fullName: string;
-    userName: string;
-    email: string;
-    city: string;
-    id: string;
-  };
-}[];
+import { UserFields } from './users.dto';
 
 export type UserModel = {
   id: string;
@@ -22,23 +12,15 @@ export type UserModel = {
   };
 };
 
+export type UsersListModel = UserModel[];
+
 export type CreateUserFormModel = {
-  fields: {
-    fullName: string;
-    userName: string;
-    email: string;
-    city: string;
-  };
+  fields: UserFields;
 };
 
 export type EditUserFormModel = {
   id: string;
-  fields: {
-    fullName: string;
-    userName: string;
-    email: string;
-    city: string;
-  };
+  fields: UserFields;
 };
 
 export type TableDataSourceModel = {
