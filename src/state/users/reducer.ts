@@ -1,6 +1,3 @@
-import { UserModel, UsersListModel } from '@/api/users/users.model';
-
-import { createReducer } from '@reduxjs/toolkit';
 import {
   createUserRequest,
   deleteUserRequest,
@@ -8,12 +5,15 @@ import {
   getUsersListRequest,
   updateUserRequest
 } from './actions';
+import { createReducer } from '@reduxjs/toolkit';
+
+import { UserModel, UsersListModel } from '@/api/users/users.model';
 
 type StatusType = 'idle' | 'pending' | 'succeeded' | 'failed';
 
 type UserListModel = {
   data: UsersListModel;
-  user: any; // TODO ----- Add type
+  user: any;
   statusGetUsersList: StatusType;
   statusDeleteUser: StatusType;
   statusCreateUser: StatusType;
@@ -23,7 +23,7 @@ type UserListModel = {
 
 const initialState: UserListModel = {
   data: [] as unknown as UsersListModel,
-  user: [],
+  user: [] as unknown as UserModel,
   statusGetUsersList: 'idle',
   statusDeleteUser: 'idle',
   statusCreateUser: 'idle',

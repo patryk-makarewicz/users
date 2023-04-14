@@ -1,8 +1,14 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
 import { EditUserForm } from '@/components/form';
 import * as Styled from '@/styles/edit.styles';
+
+type EditPageProps = {
+  locale: string;
+};
 
 const EditPage = () => {
   const { t } = useTranslation();
@@ -17,7 +23,7 @@ const EditPage = () => {
   );
 };
 
-export const getServerSideProps = async ({ locale }: any) => {
+export const getServerSideProps = async ({ locale }: EditPageProps) => {
   const translations = await serverSideTranslations(locale, ['common']);
 
   return {

@@ -1,30 +1,27 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 
-import { useAppDispatch, useAppSelector } from '@/state/hooks';
-import { wrapper } from '@/state/store';
-import { deleteUserRequest, getUsersListRequest } from '@/state/users/actions';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useEffect, useState } from 'react';
+
 import { TableDataSourceModel } from '@/api/users/users.model';
 import { Button } from '@/components/button';
 import { Table } from '@/components/table';
-
-import * as Styled from '../styles/home.styles';
+import { useAppDispatch, useAppSelector } from '@/state/hooks';
+import { wrapper } from '@/state/store';
+import { deleteUserRequest, getUsersListRequest } from '@/state/users/actions';
+import * as Styled from '@/styles/home.styles';
 
 const Home = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { data, statusGetUsersList, statusDeleteUser, statusCreateUser, statusUpdateUser } =
-    useAppSelector((state) => state.usersList);
+  const { data, statusGetUsersList, statusDeleteUser, statusCreateUser, statusUpdateUser } = useAppSelector(
+    (state) => state.usersList
+  );
 
   useEffect(() => {
-    if (
-      statusDeleteUser === 'succeeded' ||
-      statusCreateUser === 'succeeded' ||
-      statusUpdateUser === 'succeeded'
-    ) {
+    if (statusDeleteUser === 'succeeded' || statusCreateUser === 'succeeded' || statusUpdateUser === 'succeeded') {
       dispatch(getUsersListRequest());
     }
   }, [statusDeleteUser, statusCreateUser, statusUpdateUser]);
@@ -33,7 +30,7 @@ const Home = () => {
   useEffect(() => {
     if (statusGetUsersList === 'succeeded') {
       setDataSource(
-        data.map((el: any) => ({
+        data.map((el) => ({
           key: el.id,
           name: el.fields.fullName,
           userName: el.fields.userName,
@@ -71,7 +68,7 @@ const Home = () => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }: any) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale = 'en' }) => {
   await store.dispatch(getUsersListRequest());
 
   return {
