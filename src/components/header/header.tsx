@@ -1,8 +1,7 @@
+import * as Styled from './header.styles';
 import { useTranslation } from 'next-i18next';
 
 import LogoDark from '@/assets/logo_dark.png';
-
-import * as Styled from './header.styles';
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -15,7 +14,7 @@ export const Header = () => {
             <Styled.Logo src={LogoDark.src} alt="makaDev Patryk Makarewicz" title="makaDev software studio" />
           </h1>
           <Styled.Divider />
-          <Styled.Text>{t('header.info')}</Styled.Text>
+          <Styled.Text>{t('header.title')}</Styled.Text>
         </Styled.InnerWrapper>
       </Styled.Header>
     </>
