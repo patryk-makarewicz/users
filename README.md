@@ -20,7 +20,7 @@ This is the website to manage users.
 
 To watch click [here]
 
-[here]: https://makadev-users-manager.netlify.app/
+[here]: https://users-patryk-makarewicz.vercel.app/
 
 ## Getting Started
 
