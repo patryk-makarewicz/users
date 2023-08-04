@@ -1,5 +1,6 @@
 import Head from 'next/head';
 
+import * as Styled from './main.styles';
 import { PageLayout } from './pageLayout';
 
 import { Footer } from '@/components/footer';
@@ -8,9 +9,10 @@ import GlobalStyles from '@/styles/GlobalStyles';
 
 type LayoutProps = {
   children: React.ReactNode;
+  loadingPage: boolean;
 };
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, loadingPage }: LayoutProps) => {
   return (
     <>
       <Head>
@@ -30,11 +32,13 @@ const Layout = ({ children }: LayoutProps) => {
 
       <>
         <GlobalStyles />
-        <Header />
-        <main>
-          <PageLayout>{children}</PageLayout>
-        </main>
-        <Footer />
+        <Styled.Container loadingPage={loadingPage}>
+          <Header />
+          <main>
+            <PageLayout>{children}</PageLayout>
+          </main>
+          <Footer />
+        </Styled.Container>
       </>
     </>
   );
