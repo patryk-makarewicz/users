@@ -54,7 +54,6 @@ const Home = () => {
     <Styled.Container>
       <Styled.Box>
         <Styled.Text>{t('user.list')}</Styled.Text>
-
         <Button
           onClick={() => {
             router.push('/add');
