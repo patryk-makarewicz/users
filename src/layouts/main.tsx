@@ -1,18 +1,12 @@
 import Head from 'next/head';
 
-import * as Styled from './main.styles';
 import { PageLayout } from './pageLayout';
 
 import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import GlobalStyles from '@/styles/GlobalStyles';
 
-type LayoutProps = {
-  children: React.ReactNode;
-  loadingPage: boolean;
-};
-
-const Layout = ({ children, loadingPage }: LayoutProps) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Head>
@@ -30,16 +24,12 @@ const Layout = ({ children, loadingPage }: LayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <>
-        <GlobalStyles />
-        <Styled.Container loadingPage={loadingPage}>
-          <Header />
-          <main>
-            <PageLayout>{children}</PageLayout>
-          </main>
-          <Footer />
-        </Styled.Container>
-      </>
+      <GlobalStyles />
+      <Header />
+      <main>
+        <PageLayout>{children}</PageLayout>
+      </main>
+      <Footer />
     </>
   );
 };
